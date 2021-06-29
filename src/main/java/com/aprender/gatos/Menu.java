@@ -36,7 +36,7 @@ public class Menu {
 
     private static void menuRead(Cat cat) throws IOException {
         String op = (String) JOptionPane.showInputDialog(null, "Gatos java", "Gatos"
-                , JOptionPane.PLAIN_MESSAGE, imageC(cat), new String[]{"Opciones", "Ver otra imagen", "Favorito", "Volver"}, "Seleccione");
+                , JOptionPane.PLAIN_MESSAGE, imageC(cat), new String[]{"Opciones", "Ver otra imagen", "Favorito", "eliminar Favorita","Volver"}, "Seleccione");
         op = op.toLowerCase();
 
         switch (op) {
@@ -45,6 +45,9 @@ public class Menu {
                 break;
             case "favorito":
                 CatService.favorite(cat);
+                break;
+            case "eliminar favorita":
+                CatService.deleteCatFavorite(CatService.listFavorite()[0]);
                 break;
             default:
                 break;
@@ -55,9 +58,7 @@ public class Menu {
         Image image = null;
         ImageIcon imageCat = null;
         try {
-            System.out.println(cat.getUrl());
             image = ImageIO.read(new URL(cat.getUrl()));
-            System.out.println(cat.getUrl());
             image = image.getScaledInstance(100, 200, Image.SCALE_SMOOTH);
             imageCat = new ImageIcon(image);
             return imageCat;

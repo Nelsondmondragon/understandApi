@@ -19,7 +19,7 @@ public class Layout extends JFrame {
         int x=0;
         for (int i = 0; i < ima.length; i++) {
             if(i>0){
-                x=+ima[i].getImage().getWidth(this);
+                x+=ima[i].getImage().getWidth(this);
             }
             g.drawImage(ima[i].getImage(), x, 0, 100, 100, null);
 
